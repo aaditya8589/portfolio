@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* Color system — dark is the default; light values are below.
+   Change a value in both blocks and the whole site follows. */
+@theme {
+  --color-bg: #0a0a0b;
+  --color-surface: #141416;
+  --color-surface-2: #1b1b1e;
+  --color-line: #26262a;
+  --color-fg: #ededed;
+  --color-muted: #8a8a93;
+  --color-accent: #7c5cff;
+  --color-accent-2: #22d3ee;
+  --color-ok: #6ee7b7;
+  --color-overlay: rgb(0 0 0 / 0.6);
+  --color-shadow: rgb(0 0 0 / 0.55);
+  --color-dot: #3a3a44;
+  --color-dot-lit: #b3a4ff;
+  --color-code-1: #2a2a30;
+  --color-code-2: #232327;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  --haze: rgba(124, 92, 255, 0.35);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0eff4;
+  --color-line: #e2e1e8;
+  --color-fg: #16151a;
+  --color-muted: #6b6a76;
+  --color-accent: #6847f0;
+  --color-accent-2: #0891b2;
+  --color-ok: #047857;
+  --color-overlay: rgb(30 27 45 / 0.28);
+  --color-shadow: rgb(40 30 90 / 0.12);
+  --color-dot: #cfcdd8;
+  --color-dot-lit: #7c5cff;
+  --color-code-1: #e6e4ec;
+  --color-code-2: #efeef3;
+  --haze: rgba(124, 92, 255, 0.18);
+  color-scheme: light;
+}
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+/* Theme switch: the new theme spreads out in a circle from the button you clicked */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Spotlight dot grid: dim everywhere, lit up around the cursor */
+.dot-grid {
+  background-image: radial-gradient(circle at 1.5px 1.5px, var(--color-dot) 1.3px, transparent 1.8px);
+  background-size: 22px 22px;
+}
+.dot-grid-lit {
+  background-image: radial-gradient(circle at 1.5px 1.5px, var(--color-dot-lit) 1.5px, transparent 2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 30%),
+    #000 0%,
+    transparent 70%
+  );
+  mask-image: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 30%),
+    #000 0%,
+    transparent 70%
+  );
+}
+
+/* Tile hover glow that follows the cursor inside each card */
+.tile {
+  --tx: 50%;
+  --ty: 50%;
+  position: relative;
+  isolation: isolate;
+}
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    320px circle at var(--tx) var(--ty),
+    color-mix(in srgb, var(--color-accent) 70%, transparent),
+    transparent 60%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+}
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--tx) var(--ty),
+    color-mix(in srgb, var(--color-accent) 9%, transparent),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: -1;
+}
+.tile:hover::before,
+.tile:hover::after {
+  opacity: 1;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(52, 211, 153, 0); }
+}
+.status-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface-2 px-4 py-2 text-sm text-fg/90 transition hover:border-accent/60 hover:text-fg;
+  }
+  .btn-primary {
+    @apply border-accent/50 bg-accent/15 text-fg hover:bg-accent/25;
+  }
+  .kbd {
+    @apply inline-flex h-5 min-w-5 items-center justify-center rounded-md border border-line bg-surface-2 px-1.5 font-mono text-[11px] text-muted;
+  }
+}
