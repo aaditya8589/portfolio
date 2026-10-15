@@ -18,8 +18,9 @@ export const profile = {
 export type Project = {
   slug: string; // used in the URL: /projects/<slug>
   name: string;
-  summary: string;
-  description: string;
+  summary: string; // one sentence, shown on the tiles and at the top of the page
+  description?: string; // optional short paragraph: the problem, how it works, what you learned
+  features?: string[]; // optional list, shown as "What it does"
   stack: string[];
   repo?: string;
   live?: string;
@@ -29,17 +30,19 @@ export const projects: Project[] = [
   {
     slug: "codesync",
     name: "CodeSync",
-    summary: "My main project. A real-time collaborative code editor where developers can code together, run code, and practice DSA in shared rooms.",
-    description:
-      `🔐 User authentication
-👥 Collaborative coding rooms
-⚡ Real-time code synchronization
-🟢 Multi-user presence
-🕓 Version history
-▶️ Code execution
-🧩 DSA collaborative arena
-🔗 Git integration
-📈 Performance and concurrency testing`,
+    summary:
+      "A real-time collaborative code editor where developers can code together, run code, and practice DSA in shared rooms.",
+    features: [
+      "User authentication",
+      "Collaborative coding rooms",
+      "Real-time code synchronization",
+      "Multi-user presence",
+      "Version history",
+      "Code execution",
+      "DSA collaborative arena",
+      "Git integration",
+      "Performance and concurrency testing",
+    ],
     stack: ["React", "TypeScript", "Spring Boot", "WebSockets", "PostgreSQL", "Redis", "Docker"],
     repo: "https://github.com/aaditya8589/CodeSync",
   },
@@ -59,11 +62,13 @@ export const projects: Project[] = [
   },
 ];
 
+// Groups of skills. Rename groups, add new ones, or remove any you don't use.
 export const stack = {
-  Languages: ["Python", "TypeScript", "Java", "C++"],
+  Languages: ["Java", "TypeScript", "Python", "C++"],
+  Frontend: ["React", "Next.js", "Tailwind CSS"],
+  Backend: ["Spring Boot", "WebSockets", "PostgreSQL", "Redis"],
   "AI / ML": ["PyTorch", "scikit-learn", "Pandas", "NumPy"],
-  Web: ["React", "Next.js", "Node.js", "Tailwind CSS"],
-  Tools: ["Git", "Docker", "Linux", "VS Code"],
+  Tools: ["Git", "Docker", "Linux"],
 };
 
 export const education = [
