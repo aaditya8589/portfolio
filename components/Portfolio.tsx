@@ -57,7 +57,7 @@ export default function Portfolio() {
 
   const featured = projects[0];
   const others = projects.slice(1);
-  const stackPreview = Object.values(stack).flat().slice(0, 8);
+  const stackPreview = Object.values(stack).flat();
 
   return (
     <LayoutGroup>
@@ -110,8 +110,21 @@ export default function Portfolio() {
             <Clock />
           </Tile>
 
+          {/* Education */}
+          <Tile id="education" index={3} onOpen={() => openTile(routes.education)} label="Open education">
+            <div className="flex h-full flex-col justify-between gap-4">
+              <div className="flex items-center gap-2 text-sm text-muted">
+                <GraduationCap size={15} /> Education
+              </div>
+              <div>
+                <p className="font-medium leading-snug">{education[0].place}</p>
+                <p className="mt-1 font-mono text-sm tabular-nums text-muted">{education[0].years}</p>
+              </div>
+            </div>
+          </Tile>
+
           {/* Stack */}
-          <Tile id="stack" index={3} onOpen={() => openTile(routes.stack)} label="Open stack">
+          <Tile id="stack" index={4} span="sm:col-span-2" onOpen={() => openTile(routes.stack)} label="Open stack">
             <div className="flex h-full flex-col justify-between gap-4">
               <div className="flex items-center gap-2 text-sm text-muted">
                 <Layers size={15} /> Stack
@@ -126,8 +139,26 @@ export default function Portfolio() {
             </div>
           </Tile>
 
+          {/* Other projects */}
+          <Tile id="projects" index={5} span="sm:col-span-2" onOpen={() => openTile(routes.projects)} label="Open all projects">
+            <div className="flex h-full flex-col gap-4">
+              <div className="flex items-center justify-between text-sm text-muted">
+                <span>More projects</span>
+                <span className="transition group-hover:text-fg">See all</span>
+              </div>
+              <ul className="divide-y divide-line">
+                {others.map((p) => (
+                  <li key={p.name} className="flex items-baseline justify-between gap-4 py-3 first:pt-0 last:pb-0">
+                    <span className="shrink-0 font-medium">{p.name}</span>
+                    <span className="truncate text-sm text-muted">{p.summary}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Tile>
+
           {/* GitHub */}
-          <Tile id="github" index={4}>
+          <Tile id="github" index={6}>
             <a
               href={profile.links.github}
               target="_blank"
@@ -147,7 +178,7 @@ export default function Portfolio() {
           </Tile>
 
           {/* Contact */}
-          <Tile id="contact" index={5} onOpen={() => openTile(routes.contact)} label="Open contact">
+          <Tile id="contact" index={7} onOpen={() => openTile(routes.contact)} label="Open contact">
             <div className="flex h-full flex-col justify-between gap-4">
               <p className="text-2xl font-semibold leading-tight tracking-tight">
                 Have something
@@ -158,36 +189,6 @@ export default function Portfolio() {
             </div>
           </Tile>
 
-          {/* Other projects */}
-          <Tile id="projects" index={6} span="sm:col-span-2" onOpen={() => openTile(routes.projects)} label="Open all projects">
-            <div className="flex h-full flex-col gap-4">
-              <div className="flex items-center justify-between text-sm text-muted">
-                <span>More projects</span>
-                <span className="transition group-hover:text-fg">See all</span>
-              </div>
-              <ul className="divide-y divide-line">
-                {others.map((p) => (
-                  <li key={p.name} className="flex items-baseline justify-between gap-4 py-3 first:pt-0 last:pb-0">
-                    <span className="shrink-0 font-medium">{p.name}</span>
-                    <span className="truncate text-sm text-muted">{p.summary}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Tile>
-
-          {/* Education */}
-          <Tile id="education" index={7} span="sm:col-span-2" onOpen={() => openTile(routes.education)} label="Open education">
-            <div className="flex h-full flex-col justify-between gap-4">
-              <div className="flex items-center gap-2 text-sm text-muted">
-                <GraduationCap size={15} /> Education
-              </div>
-              <div>
-                <p className="text-lg font-medium">{education[0].place}</p>
-                <p className="text-sm text-muted">{education[0].detail}</p>
-              </div>
-            </div>
-          </Tile>
         </div>
       </main>
 
