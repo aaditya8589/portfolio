@@ -8,7 +8,7 @@ export const profile = {
   location: "Chennai, India",
   status: "Open to internships",
   email: "daadityaagarwal8589@gmail.com", 
-  resumeUrl: "https://drive.google.com/file/d/1lbDpTyXTJ6NzI7K39r69bIOe__PPFV-t/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1klFj7pfGfXAJczStXXqN9yy8pxvotYZU/view?usp=sharing",
   links: {
     github: "https://github.com/aaditya8589",
     linkedin: "https://www.linkedin.com/in/aaditya-agarwal-b42ab6323/",
