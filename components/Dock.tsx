@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
-import { Command, FileText, FolderGit2, House, Layers, Mail, Moon, Sun } from "lucide-react";
+import { FileText, Search, FolderGit2, House, Layers, Mail, Moon, Sun } from "lucide-react";
 import { toggleTheme, useTheme } from "@/lib/theme";
 import { GitHubIcon } from "./BrandIcons";
 import { routes } from "@/lib/routes";
@@ -31,7 +31,7 @@ export default function Dock({
     { label: "GitHub", icon: <GitHubIcon className="h-[18px] w-[18px]" />, href: profile.links.github },
     { label: "Resume", icon: <FileText size={18} />, href: profile.resumeUrl },
     "sep",
-    { label: "Search  ⌘K", icon: <Command size={18} />, onClick: onPalette },
+    { label: "Search  ⌘K", icon: <Search size={18} />, onClick: onPalette },
     {
       label: theme === "dark" ? "Light mode" : "Dark mode",
       icon: <ThemeIcon theme={theme} />,

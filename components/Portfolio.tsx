@@ -80,13 +80,7 @@ export default function Portfolio() {
                 </h1>
                 <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">{profile.intro}</p>
               </div>
-              <div className="flex items-center justify-between text-sm text-muted">
-                <span>{profile.role}</span>
-                <span className="hidden items-center gap-1.5 md:inline-flex">
-                  <span className="kbd">⌘</span>
-                  <span className="kbd">K</span>
-                </span>
-              </div>
+              <p className="text-sm text-muted">{profile.role}</p>
             </div>
           </Tile>
 

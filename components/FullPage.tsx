@@ -30,7 +30,7 @@ export default function FullPage({ route }: { route: string }) {
         <motion.header
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-5 flex items-center justify-between"
+          className="mb-5 flex items-center"
         >
           <Link
             href="/"
@@ -39,13 +39,6 @@ export default function FullPage({ route }: { route: string }) {
             <ArrowLeft size={15} className="transition group-hover:-translate-x-0.5" />
             {profile.name}
           </Link>
-          <button
-            onClick={() => setPalette(true)}
-            className="hidden items-center gap-2 rounded-full border border-line bg-surface/70 px-3 py-1.5 text-sm text-muted backdrop-blur-sm transition hover:border-accent/50 hover:text-fg sm:inline-flex"
-          >
-            Search
-            <span className="kbd">⌘K</span>
-          </button>
         </motion.header>
 
         <motion.main
