@@ -8,19 +8,19 @@ export const profile = {
   location: "Chennai, India",
   status: "Open to internships",
   email: "daadityaagarwal8589@gmail.com", 
-  resumeUrl: "#", // TODO: link to your resume PDF (put it in /public and use "/resume.pdf")
+  resumeUrl: "https://drive.google.com/file/d/1lbDpTyXTJ6NzI7K39r69bIOe__PPFV-t/view?usp=sharing",
   links: {
     github: "https://github.com/aaditya8589",
-    linkedin: "https://www.linkedin.com/in/aaditya-agarwal-b42ab6323/", // TODO: your LinkedIn
+    linkedin: "https://www.linkedin.com/in/aaditya-agarwal-b42ab6323/",
   },
 };
 
 export type Project = {
-  slug: string; // used in the URL: /projects/<slug>
+  slug: string; 
   name: string;
-  summary: string; // one sentence, shown on the tiles and at the top of the page
-  description?: string; // optional short paragraph: the problem, how it works, what you learned
-  features?: string[]; // optional list, shown as "What it does"
+  summary: string; 
+  description?: string; 
+  features?: string[];
   stack: string[];
   repo?: string;
   live?: string;
@@ -43,7 +43,7 @@ export const projects: Project[] = [
       "Git integration",
       "Performance and concurrency testing",
     ],
-    stack: ["React", "TypeScript", "Spring Boot", "WebSockets", "PostgreSQL", "Redis", "Docker"],
+    stack: ["React", "TypeScript", "Spring Boot", "WebSockets", "PostgreSQL", "Docker"],
     repo: "https://github.com/aaditya8589/CodeSync",
   },
   {
@@ -62,13 +62,13 @@ export const projects: Project[] = [
   },
 ];
 
-// Groups of skills. Rename groups, add new ones, or remove any you don't use.
+
 export const stack = {
   Languages: ["Java", "TypeScript", "Python", "C++"],
   Frontend: ["React", "Next.js", "Tailwind CSS"],
-  Backend: ["Spring Boot", "WebSockets", "PostgreSQL", "Redis"],
-  "AI / ML": ["PyTorch", "scikit-learn", "Pandas", "NumPy"],
-  Tools: ["Git", "Docker", "Linux"],
+  Backend: ["Spring Boot", "WebSockets", "PostgreSQL"],
+  "AI / ML": ["PyTorch", "Pandas", "NumPy"],
+  Tools: ["Git", "Docker"],
 };
 
 export const education = [
