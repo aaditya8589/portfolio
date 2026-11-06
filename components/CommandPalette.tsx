@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Copy, CornerDownLeft, Moon, Sun, FileText, FolderGit2, GraduationCap, Layers, Mail, Search, Sparkles, User } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "./BrandIcons";
 import { featuredRoute, routes } from "@/lib/routes";
-import { profile } from "@/lib/content";
+import { profile, projects } from "@/lib/content";
 import { copyEmail } from "./CopyEmail";
 import { toggleTheme, useTheme } from "@/lib/theme";
 
@@ -31,7 +31,7 @@ export default function CommandPalette({
     const link = (url: string) => () => window.open(url, "_blank", "noreferrer");
     return [
       { label: "About me", group: "Go to", icon: <User size={16} />, run: go(routes.about) },
-      { label: "CodeSync", group: "Go to", icon: <Sparkles size={16} />, run: go(featuredRoute) },
+      { label: projects[0].name, group: "Go to", icon: <Sparkles size={16} />, run: go(featuredRoute) },
       { label: "All projects", group: "Go to", icon: <FolderGit2 size={16} />, run: go(routes.projects) },
       { label: "Stack", group: "Go to", icon: <Layers size={16} />, run: go(routes.stack) },
       { label: "Education", group: "Go to", icon: <GraduationCap size={16} />, run: go(routes.education) },

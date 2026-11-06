@@ -16,7 +16,7 @@ export const featuredRoute = routes.project(projects[0].slug);
 export function tileForRoute(route: string): string | null {
   const map: Record<string, string> = {
     [routes.about]: "about",
-    [featuredRoute]: "codesync",
+    [featuredRoute]: "featured",
     [routes.projects]: "projects",
     [routes.stack]: "stack",
     [routes.education]: "education",

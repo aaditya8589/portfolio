@@ -85,7 +85,7 @@ export default function Portfolio() {
           </Tile>
 
           {/* Featured project */}
-          <Tile id="codesync" index={1} span="sm:col-span-2 sm:row-span-2" onOpen={() => openTile(featuredRoute)} label="Open CodeSync">
+          <Tile id="featured" index={1} span="sm:col-span-2 sm:row-span-2" onOpen={() => openTile(featuredRoute)} label={`Open ${featured.name}`}>
             <div className="flex h-full flex-col gap-6">
               <div className="flex items-start justify-between">
                 <div>
@@ -94,7 +94,7 @@ export default function Portfolio() {
                 </div>
                 <ArrowUpRight className="text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
               </div>
-              <EditorMock />
+              {featured.slug === "khuraak" ? <MealLogMock /> : <EditorMock />}
               <p className="max-w-md text-[15px] leading-relaxed text-muted">{featured.summary}</p>
             </div>
           </Tile>
@@ -283,5 +283,47 @@ function Cursor({ color, name }: { color: string; name: string }) {
         {name}
       </span>
     </span>
+  );
+}
+
+/** Preview for Khuraak: today's calories and protein, plus a few meals logged in household units. */
+function MealLogMock() {
+  const meals = [
+    { name: "2 roti, 1 katori dal", kcal: 360 },
+    { name: "Paneer bhurji, 1 plate", kcal: 410 },
+    { name: "1 glass lassi", kcal: 220 },
+  ];
+  return (
+    <div className="relative flex-1 overflow-hidden rounded-xl border border-line bg-bg/70 p-4">
+      <div className="flex items-baseline justify-between">
+        <span className="text-xs text-muted">Today</span>
+        <span className="font-mono text-xs tabular-nums text-muted">
+          <span className="text-fg">1,640</span> / 2,200 kcal
+        </span>
+      </div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--color-code-1)]">
+        <div className="h-full rounded-full bg-accent" style={{ width: "75%" }} />
+      </div>
+      <div className="mt-3 flex items-baseline justify-between">
+        <span className="text-xs text-muted">Protein</span>
+        <span className="font-mono text-xs tabular-nums text-muted">
+          <span className="text-fg">92</span> / 130 g
+        </span>
+      </div>
+      <div className="mt-2 h-2 overflow-hidden rounded-full bg-[var(--color-code-1)]">
+        <div className="h-full rounded-full bg-accent-2" style={{ width: "71%" }} />
+      </div>
+      <ul className="mt-4 space-y-2">
+        {meals.map((m) => (
+          <li
+            key={m.name}
+            className="flex items-center justify-between rounded-lg bg-[var(--color-code-2)] px-3 py-2 text-xs"
+          >
+            <span className="text-fg/80">{m.name}</span>
+            <span className="font-mono tabular-nums text-muted">{m.kcal} kcal</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
